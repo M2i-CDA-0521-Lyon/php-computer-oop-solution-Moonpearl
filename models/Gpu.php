@@ -8,33 +8,13 @@ require_once './models/Brand.php';
 /**
  * Réprésente une carte graphique
  */
-class Gpu
+class Gpu extends Component
 {
-    /**
-     * Identifiant en base de données
-     * @var integer|null
-     */
-    private ?int $id;
-    /**
-     * Nom du composant
-     * @var string
-     */
-    private string $name;
-    /**
-     * Prix du composant
-     * @var float
-     */
-    private float $price;
-    /**
-     * Identifiant en base de données de la marque du composant
-     * @var integer|null
-     */
-    private ?int $brandId;
     /**
      * Quantité de mémoire
      * @var integer
      */
-    private int $ram;
+    protected int $ram;
 
     /**
      * Récupère tous les cartes graphiques en base de données
@@ -77,46 +57,6 @@ class Gpu
         $this->price = $price;
         $this->brandId = $brandId;
         $this->ram = $ram;
-    }
-
-    /**
-     * Get identifiant en base de données
-     *
-     * @return  integer|null
-     */ 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get nom du composant
-     *
-     * @return  string
-     */ 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Get prix du composant
-     *
-     * @return  float
-     */ 
-    public function getPrice(): float
-    {
-        return $this->price;
-    }
-
-    /**
-     * Get marque du composant
-     *
-     * @return  Brand|null
-     */ 
-    public function getBrand(): ?Brand
-    {
-        return Brand::findById($this->brandId);
     }
 
     /**

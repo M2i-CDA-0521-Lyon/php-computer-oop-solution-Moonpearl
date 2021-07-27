@@ -2,44 +2,26 @@
 
 // Définit le service SqlDatabaseHandler comme dépendance de ce fichier
 require_once './services/SqlDatabaseHandler.php';
+// Définit le service SqlDatabaseHandler comme dépendance de ce fichier
+require_once './models/Component.php';
 // Définit la classe Brand comme dépendance de ce fichier
 require_once './models/Brand.php';
 
 /**
  * Réprésente un processeur
  */
-class Cpu
+class Cpu extends Component
 {
-    /**
-     * Identifiant en base de données
-     * @var integer|null
-     */
-    private ?int $id;
-    /**
-     * Nom du composant
-     * @var string
-     */
-    private string $name;
-    /**
-     * Prix du composant
-     * @var float
-     */
-    private float $price;
-    /**
-     * Identifiant en base de données de la marque du composant
-     * @var integer|null
-     */
-    private ?int $brandId;
     /**
      * Cadence du processeur
      * @var integer
      */
-    private int $clock;
+    protected int $clock;
     /**
      * Nombre de coeurs
      * @var integer
      */
-    private int $cores;
+    protected int $cores;
 
     /**
      * Récupère tous les processeurs en base de données
@@ -105,52 +87,10 @@ class Cpu
         int $clock = 0,
         int $cores = 0
     ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->price = $price;
-        $this->brandId = $brandId;
+        parent::__construct($id, $name, $price, $brandId);
+        
         $this->clock = $clock;
         $this->cores = $cores;
-    }
-
-    /**
-     * Get identifiant en base de données
-     *
-     * @return  integer|null
-     */ 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get nom du composant
-     *
-     * @return  string
-     */ 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Get prix du composant
-     *
-     * @return  float
-     */ 
-    public function getPrice(): float
-    {
-        return $this->price;
-    }
-
-    /**
-     * Get marque du composant
-     *
-     * @return  Brand|null
-     */ 
-    public function getBrand(): ?Brand
-    {
-        return Brand::findById($this->brandId);
     }
 
     /**

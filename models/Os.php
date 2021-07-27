@@ -8,29 +8,8 @@ require_once './models/Brand.php';
 /**
  * Réprésente un systéme d'exploitation
  */
-class Os
+class Os extends Component
 {
-    /**
-     * Identifiant en base de données
-     * @var integer|null
-     */
-    private ?int $id;
-    /**
-     * Nom du composant
-     * @var string
-     */
-    private string $name;
-    /**
-     * Prix du composant
-     * @var float
-     */
-    private float $price;
-    /**
-     * Identifiant en base de données de la marque du composant
-     * @var integer|null
-     */
-    private ?int $brandId;
-
     /**
      * Récupère tous les systémes d'exploitation en base de données
      *
@@ -68,45 +47,5 @@ class Os
         $this->name = $name;
         $this->price = $price;
         $this->brandId = $brandId;
-    }
-
-    /**
-     * Get identifiant en base de données
-     *
-     * @return  integer|null
-     */ 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get nom du composant
-     *
-     * @return  string
-     */ 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Get prix du composant
-     *
-     * @return  float
-     */ 
-    public function getPrice(): float
-    {
-        return $this->price;
-    }
-
-    /**
-     * Get marque du composant
-     *
-     * @return  Brand|null
-     */ 
-    public function getBrand(): ?Brand
-    {
-        return Brand::findById($this->brandId);
     }
 }
